@@ -1,24 +1,23 @@
 #pragma once
 #include "Font.h"
 #include "Vector3.h"
-
-struct  SDL_Texture;
+#include "ResourceManager.h"
+struct SDL_Texture;
 namespace nu {
-	class Renderer;
-	
-	class Text {
-	public:
-		Text() = default;
-		Text(Font* font) : m_font{ font } {}
-		~Text();
+    class Renderer;
 
-		bool Create(const Renderer& renderer, const std::string& text, const Color& color);
-		void Draw(const Renderer& renderer, float x, float y);
+    class Text {
+    public:
+        Text() = default;
+        Text(res_t<Font> font) : m_font{ font } {}
+        ~Text();
 
-	private:
-		Font* m_font{ nullptr };
-		SDL_Texture* m_texture{ nullptr };
-	};
+        bool Create(const Renderer& renderer, const std::string& text, const Color& color);
+        void Draw(const Renderer& renderer, float x, float y);
 
+    private:
+        res_t<Font> m_font;
+        SDL_Texture* m_texture{ nullptr };
+    };
 
 }

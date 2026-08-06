@@ -17,7 +17,7 @@
 #include "Game.h"
 #include "Audio.h"
 #include "ParticleSystem.h"
-
+#include "ResourceManager.h"
 //void fnEngine();
 
 //void f()

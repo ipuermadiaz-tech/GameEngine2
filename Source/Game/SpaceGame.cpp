@@ -10,21 +10,19 @@ bool SpaceGame::Initialize()
     m_scene = new Scene();
     m_scene->SetGame(this);
     Engine::Get().GetAudio().AddSound("bass", "bass.wav");
-    m_titleFont= new Font();
-    m_titleFont->Load("fonts/Handmade_Calligraphy.ttf", 128);
-    m_titleText= new Text(m_titleFont);
+
+    m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/Handmade_Calligraphy.ttf", 128.0f));
     m_titleText->Create(Engine::Get().GetRenderer(), "Super Cool Space Game", Color{ 1.0f, 1.0f, 1.0f });
 
-    m_gameFont = new Font();
-    m_gameFont->Load("fonts/Handmade_Calligraphy.ttf", 64);
-
-    m_gameText = new Text(m_gameFont);
-    m_liveText = new Text(m_gameFont);
-    m_fuelText = new Text(m_gameFont);
-    
+    auto gameFont = Resources().GetWithID<Font>("game_font", "fonts/Handmade_Calligraphy.ttf", 64.0f);
+    m_gameText = new Text(gameFont);
+    m_liveText = new Text(gameFont);
+    m_fuelText = new Text(gameFont);
 
     return true;
 }
+
+
 
 void SpaceGame::Update(float dt)
 {

@@ -1,10 +1,11 @@
 #pragma once
-#include <string>
+#include "Resource.h"
+#include <string> // Standard library header must come before SDL
 
 struct TTF_Font;
 
 namespace nu {
-	class Font {
+	class Font : public Resource {
 	public:
 		Font() = default;
 		~Font();

@@ -2,13 +2,13 @@
 #include "Vector2.h"
 #include <iostream>
 #include <string> // Added missing header
-
+#include "Resource.h"
 struct SDL_Texture;
 
 namespace nu {
     class Renderer; 
 
-    class Texture {
+    class Texture : public Resource {
     public:
         Texture() = default;
         ~Texture();

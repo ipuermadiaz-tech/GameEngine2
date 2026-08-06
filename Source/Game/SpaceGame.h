@@ -49,11 +49,8 @@ private:
 	int m_previousFuel = -1;
 	GameState m_gameState = GameState::Title;
 
-	 nu::Font* m_titleFont{ nullptr };
 	 nu::Text* m_titleText{ nullptr };
-	 nu::Font* m_gameOverFont{ nullptr };
 	 nu::Text* m_gameOverText{ nullptr };
-	 nu::Font* m_gameFont{ nullptr };
 	 nu::Text* m_gameText{ nullptr };
 	 
 	 nu::Text* m_liveText{ nullptr };

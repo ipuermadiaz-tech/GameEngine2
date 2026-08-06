@@ -127,9 +127,14 @@ int main(int argc, char* argv[]) {
     uint64_t prevticks=ticks;
     // create texture, using shared_ptr so texture can be shared
 // create texture, using shared_ptr so texture can be shared
-    std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
+    //std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
 
-    texture->Load("Textures/Thorn of Love.png", nu::Engine::Get().GetRenderer());
+    //texture->Load("Textures/Thorn of Love.png", nu::Engine::Get().GetRenderer());
+
+
+    auto texture = Resources().Get<Texture>("Textures/Thorn of Love.png", Engine::Get().GetRenderer());
+    
+
     //Main Loop
     bool quit = false;
     	//input.Initialize();
