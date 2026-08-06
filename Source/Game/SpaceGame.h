@@ -42,7 +42,7 @@ private:
 	float m_spawnTime = 3.0f;
 
 	float max_Timer=5.0f;
-	int m_fuel = 0.0f;
+	int m_fuel = 0;
 	int wave_counter = 5;
 	int m_previousScore = -1;
 	int m_previousLives = -1;

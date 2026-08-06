@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "Model.h"
 #include "Math_Util.h"
+#include "Texture.h"
 
 bool nu::Renderer::Initialize(const char* name, int width, int height) {
     SDL_Init(SDL_INIT_VIDEO);
@@ -115,4 +116,21 @@ void nu::Renderer::DrawModel(const Model& model, const Transform& transform) con
         }
     }
 
+}
+
+void nu::Renderer::DrawTexture(Texture* texture, float x, float y)
+{
+    // 1. Get the texture dimensions via GetSize()
+    Vector2 size = texture->GetSize();
+
+    SDL_FRect destRect;
+    destRect.x = x;
+    destRect.y = y;
+
+    // 2. Assign width (x) and height (y)
+    destRect.w = size.x;
+    destRect.h = size.y;
+
+    // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+    SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
 }

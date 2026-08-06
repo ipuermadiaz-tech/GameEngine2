@@ -163,11 +163,11 @@ void SpaceGame::SpawnEnemy()
 
     std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemyDesc);
     m_scene->AddActor(std::move(enemy));
-    if (max_Timer > 2.5) {
-        max_Timer -= 0.2;
+    if (max_Timer > 2.5f) {
+        max_Timer -= 0.2f;
     }
-    if (max_Timer > 2.0) {
-        max_Timer -= 0.1;
+    if (max_Timer > 2.0f) {
+        max_Timer -= 0.1f;
     }
   
 }

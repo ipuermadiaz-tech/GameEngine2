@@ -10,7 +10,6 @@
 #include "SpaceGame.h"
 #include <memory>
 
-
 using namespace nu;
 
 
@@ -25,6 +24,9 @@ using namespace nu;
 //};
 
 int main(int argc, char* argv[]) {
+
+
+
   
     //std::cout << "===========object============\n";
     //{
@@ -123,7 +125,11 @@ int main(int argc, char* argv[]) {
 
     uint64_t ticks = SDL_GetTicksNS();
     uint64_t prevticks=ticks;
+    // create texture, using shared_ptr so texture can be shared
+// create texture, using shared_ptr so texture can be shared
+    std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
 
+    texture->Load("Textures/Thorn of Love.png", nu::Engine::Get().GetRenderer());
     //Main Loop
     bool quit = false;
     	//input.Initialize();
@@ -241,6 +247,7 @@ int main(int argc, char* argv[]) {
             Engine::Get().GetRenderer().DrawPoint(points[i].x, points[i].y);
           
         }
+        
 
         //if(input.GetButtonPressed(Input::MouseButton::Left))
         //{
@@ -295,8 +302,8 @@ int main(int argc, char* argv[]) {
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
 
-        Engine::Get().GetRenderer().SetColor(255.0f, 255.0f, .0f);
-
+        Engine::Get().GetRenderer().SetColor(255, 255,0);
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 600, 600);
         //player.Draw(g_engine.GetRenderer());
         //enemy.Draw(g_engine.GetRenderer());
 

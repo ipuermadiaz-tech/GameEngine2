@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "Input.h"
+#include "Texture.h"
 #include "Renderer.h"
 #include "GameTime.h"
 #include "Math_Util.h"

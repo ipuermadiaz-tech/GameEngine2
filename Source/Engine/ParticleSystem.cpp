@@ -39,8 +39,12 @@ void nu::ParticleSystem::Draw(const Renderer& renderer)
 	{
 		if (particle.active)
 		{
-			// set particle color and draw point at current position
-			renderer.SetColor(particle.color.x, particle.color.y, particle.color.z);
+			// Explicitly cast float color values to Uint8
+			renderer.SetColor(
+				static_cast<Uint8>(particle.color.x),
+				static_cast<Uint8>(particle.color.y),
+				static_cast<Uint8>(particle.color.z)
+			);
 			renderer.DrawPoint(particle.position.x, particle.position.y);
 		}
 	}
