@@ -37,6 +37,7 @@ namespace nu {
             // update position with velocity (multiply by dt)
             particle.position += particle.velocity * dt;
         }
+
     }
 
     void ParticleSystem::Draw(const Renderer& renderer)

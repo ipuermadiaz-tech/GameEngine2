@@ -304,11 +304,12 @@ int main(int argc, char* argv[]) {
         //}
 
         Engine::Get().GetRenderer().Clear();
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 0, 0);
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
 
         Engine::Get().GetRenderer().SetColor(255, 255,0);
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 0, 0);
+     
         //player.Draw(g_engine.GetRenderer());
         //enemy.Draw(g_engine.GetRenderer());
 
