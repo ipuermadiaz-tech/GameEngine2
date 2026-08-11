@@ -2,35 +2,42 @@
 #include "Vector2.h"
 #include "Vector3.h"
 #include <vector>
+#include <memory>
+
 namespace nu {
-	struct Particle
-	{
-		bool active{ false };
-		float lifespan{ 1 };
+    class Texture;
+    class Renderer;
 
-		Vector2 position{ 0, 0 };
-		Vector2 velocity{ 0, 0 };
-		Color color{ 0, 0, 0 };
-	};
+    struct Particle
+    {
+        nu::Vector2 position;
+        nu::Vector2 velocity;
+        float lifespan{ 0.0f };
+        nu::Color color;
+        bool active{ false };
 
-	class ParticleSystem
-	{
-	public:
-		ParticleSystem() = default;
+        std::shared_ptr<nu::Texture> texture{ nullptr };
+        float scale{ 1.0f };
+        float rotation{ 0.0f };
+    };
 
-		bool Initialize(size_t poolSize = 1000);
-		void Shutdown();
+    class ParticleSystem
+    {
+    public:
+        ParticleSystem() = default;
 
-		void Update(float dt);
-		void Draw(const class Renderer& renderer);
+        bool Initialize(size_t poolSize = 1000);
+        void Shutdown();
 
-		void AddParticle(const Particle& particle);
+        void Update(float dt);
+        void Draw(const nu::Renderer& renderer);
 
-	private:
-		Particle* GetFreeParticle();
+        void AddParticle(const Particle& particle);
 
-	private:
-		// store particles in particle pool
-		std::vector<Particle> m_particles;
-	};
+    private:
+        Particle* GetFreeParticle();
+
+    private:
+        std::vector<Particle> m_particles;
+    };
 }

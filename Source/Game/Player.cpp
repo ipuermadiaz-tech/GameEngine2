@@ -14,6 +14,10 @@ void Player::Update(float dt)
     particle.lifespan = ru::RandomFloat(1.0f, 1.1f);
     particle.velocity = { ru::RandomFloat(-200.0f, 200.0f), ru::RandomFloat(-200.0f, 200.0f) };
 
+    // Assign texture and scale
+    particle.texture = nu::Resources().Get<nu::Texture>("Textures/Particle.png", nu::Engine::Get().GetRenderer());
+    particle.scale = 0.5f;
+
     nu::Engine::Get().GetPS().AddParticle(particle);
 
 
@@ -60,15 +64,15 @@ void Player::Update(float dt)
                 BulletDesc desc;
                 desc.name = "Bullet";
                 desc.tag = "PlayerBullet";
-                desc.model = assets::bulletModel;
+                desc.model = assets::bulletModel; // Restored original vector model
+                desc.texture = nu::Resources().Get<nu::Texture>("Textures/bullet.png", nu::Engine::Get().GetRenderer()); // Added sprite texture
                 desc.transform = m_transform;
                 desc.speed = 1000.0f;
 
                 std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(desc);
-                 m_scene->AddActor(std::move(bullet));
+                m_scene->AddActor(std::move(bullet));
 
                 m_ammo--;
-
                 // Use <= 0 to safely catch accidental underflows
                 if (m_ammo <= 0) {
                     m_ammo = 0;

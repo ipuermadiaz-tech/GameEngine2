@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
     //texture->Load("Textures/Thorn of Love.png", nu::Engine::Get().GetRenderer());
 
 
-    auto texture = Resources().Get<Texture>("Textures/Thorn of Love.png", Engine::Get().GetRenderer());
+    auto texture = Resources().Get<Texture>("Textures/Background.png", Engine::Get().GetRenderer());
     
 
     //Main Loop
@@ -308,7 +308,7 @@ int main(int argc, char* argv[]) {
 
 
         Engine::Get().GetRenderer().SetColor(255, 255,0);
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 600, 600);
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 0, 0);
         //player.Draw(g_engine.GetRenderer());
         //enemy.Draw(g_engine.GetRenderer());
 

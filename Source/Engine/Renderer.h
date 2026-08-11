@@ -5,41 +5,42 @@
 
 namespace nu {
 
-	class Renderer
-	{
-	public:
-		bool Initialize(const char* name, int width=1920, int height=1024);
-		void Shutdown();
+    class Model;
+    struct Transform;
+    class Texture;
 
-		void SetColor(Uint8 r,Uint8 g,Uint8 b, Uint8 a=255) const;
+    class Renderer
+    {
+    public:
+        bool Initialize(const char* name, int width=1920, int height=1024);
+        void Shutdown();
 
+        void SetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a=255) const;
 
-		void Clear() const;
-		void DrawPoint(float x, float y) const;
-		void DrawLine(float x1, float y1, float x2, float y2) const;
+        void Clear() const;
+        void DrawPoint(float x, float y) const;
+        void DrawLine(float x1, float y1, float x2, float y2) const;
 
-		void Present();
-		void DrawFillRect(float x, float y, float w, float h) const;
-		void DrawRect(float x, float y, float w, float h) const;
+        void Present();
+        void DrawFillRect(float x, float y, float w, float h) const;
+        void DrawRect(float x, float y, float w, float h) const;
 
-		void DrawModel(const class Model& model, const struct Transform& transform) const;
+        void DrawModel(const class Model& model, const struct Transform& transform) const;
 
-		int GetWidth() const { return m_width; };
-		int GetHeight() const { return m_height; };
+        int GetWidth() const { return m_width; }
+        int GetHeight() const { return m_height; }
 
-		friend class Text;
-		friend class Texture;
-		void DrawTexture(Texture* texture, float x, float y);
+        friend class Text;
+        friend class Texture;
+        
+        void DrawTexture(Texture* texture, float x, float y) const;
+        void DrawTexture(Texture* texture, const Transform& transform) const;
 
+    private:
+        SDL_Window* m_window = nullptr;
+        SDL_Renderer* m_renderer = nullptr;
 
-	private:
-		SDL_Window* m_window=nullptr;
-		SDL_Renderer* m_renderer = nullptr;
-	
-		int m_width = 0;
-		int m_height = 0;
-	
-	
-	
-	};
+        int m_width = 0;
+        int m_height = 0;
+    };
 }
