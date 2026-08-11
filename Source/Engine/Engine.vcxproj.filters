@@ -56,6 +56,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Json.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -125,6 +128,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Json.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
