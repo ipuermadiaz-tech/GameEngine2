@@ -1,0 +1,85 @@
+{
+  "prototypes": [
+    {
+      "type": "Bullet",
+      "name": "BulletPrototype",
+      "tag": "PlayerBullet",
+      "lifespan": 5.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/bullet.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 16.0
+        }
+      ]
+    },
+    {
+      "type": "Enemy",
+      "name": "EnemyPrototype",
+      "tag": "Enemy",
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/enemy.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 32.0
+        }
+      ]
+    },
+    {
+      "type": "Enemy",
+      "name": "WallPrototype",
+      "tag": "Wall",
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/wall.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 32.0
+        }
+      ]
+    },
+    {
+      "type": "Player",
+      "name": "PlayerPrototype",
+      "tag": "Player",
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/player.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 2.3
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 32.0
+        }
+      ]
+    }
+  ]
+}

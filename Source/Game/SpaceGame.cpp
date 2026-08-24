@@ -2,21 +2,30 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Assets.h"
+#include "Factory.h"
+#include "ResourceManager.h"
+#include <iostream>
+#include <algorithm>
 
 using namespace nu;
 
 bool SpaceGame::Initialize()
 {
     Game::Initialize();
+
     m_scene = new Scene();
     m_scene->SetGame(this);
+
+    if (!m_scene->Load("data/scene.json")) {
+        std::cerr << "Failed to load scene.json!" << std::endl;
+    }
+
     Engine::Get().GetAudio().AddSound("bass", "bass.wav");
 
-    m_titleText = new Text(Resources().GetWithID<Font>("title_font", "fonts/Handmade_Calligraphy.ttf", 128.0f));
+    m_titleText = new Text(ResourceManager::Instance().GetWithID<Font>("title_font", "fonts/Handmade_Calligraphy.ttf", 128.0f));
     m_titleText->Create(Engine::Get().GetRenderer(), "Super Cool Space Game", Color{ 1.0f, 1.0f, 1.0f });
 
-    auto gameFont = Resources().GetWithID<Font>("game_font", "fonts/Handmade_Calligraphy.ttf", 64.0f);
+    auto gameFont = ResourceManager::Instance().GetWithID<Font>("game_font", "fonts/Handmade_Calligraphy.ttf", 64.0f);
     m_gameText = new Text(gameFont);
     m_liveText = new Text(gameFont);
     m_fuelText = new Text(gameFont);
@@ -27,6 +36,7 @@ bool SpaceGame::Initialize()
 void SpaceGame::Update(float dt)
 {
     dt = std::min(dt, 0.05f);
+
     switch (m_gameState) {
     case GameState::Title:
         if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE))
@@ -34,12 +44,13 @@ void SpaceGame::Update(float dt)
             m_gameState = GameState::StartGame;
         }
         break;
+
     case GameState::StartGame:
         m_score = 0;
         m_lives = 3;
-        SpawnPlayer();
         m_gameState = GameState::StartLevel;
         break;
+
     case GameState::StartLevel:
         m_scene->RemoveAllActors();
         SpawnPlayer();
@@ -59,7 +70,14 @@ void SpaceGame::Update(float dt)
                 wave_counter = 14;
             }
         }
+
+        // --- FIXED: Drive scene updates and physics collisions ---
+        if (m_scene)
+        {
+            m_scene->Update(dt);
+        }
         break;
+
     case GameState::GameOver:
         m_gameState = GameState::Title;
         m_score = 0;
@@ -75,13 +93,25 @@ void SpaceGame::Draw(const nu::Renderer& renderer)
 {
     switch (m_gameState) {
     case GameState::Title:
-        m_titleText->Draw(renderer, 400, 480);
+        if (m_titleText)
+        {
+            m_titleText->Draw(renderer, 400, 480);
+        }
         break;
+
     case GameState::StartGame:
         break;
+
     case GameState::StartLevel:
         break;
+
     case GameState::Game:
+        // --- FIXED: Render all active scene actors and components ---
+        if (m_scene)
+        {
+            m_scene->Draw(renderer);
+        }
+
         if (m_score != m_previousScore) {
             m_gameText->Create(renderer, "Score : " + std::to_string(m_score), Color{ 1.0f, 1.0f, 1.0f });
             m_previousScore = m_score;
@@ -91,19 +121,22 @@ void SpaceGame::Draw(const nu::Renderer& renderer)
             m_liveText->Create(renderer, "Lives : " + std::to_string(m_lives), Color{ 1.0f, 1.0f, 1.0f });
             m_previousLives = m_lives;
         }
+
         if (m_fuel != m_previousFuel) {
             m_fuelText->Create(renderer, "Fuel : " + std::to_string(m_fuel), Color{ 1.0f, 1.0f, 1.0f });
             m_previousFuel = m_fuel;
         }
 
-        m_gameText->Draw(renderer, 30, 30);
-        m_liveText->Draw(renderer, 800, 30);
-        m_fuelText->Draw(renderer, 1600, 30);
+        if (m_gameText) m_gameText->Draw(renderer, 30, 30);
+        if (m_liveText) m_liveText->Draw(renderer, 800, 30);
+        if (m_fuelText) m_fuelText->Draw(renderer, 1600, 30);
         break;
+
     case GameState::GameOver:
         max_Timer = 5.0f;
         break;
     }
+
     Game::Draw(renderer);
 }
 
@@ -117,43 +150,22 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnPlayer()
 {
-    // Restored Original Mesh/Model setup
-    Mesh mesh{ {Vector2{-3.0f, 3.0f}, Vector2{3.0f, 3.0f}, Vector2{0.0f, 0.0f}, Vector2{-3.0f, 3.0f}}, Color{255.0f, 255.0f, 255.0f} };
-    Mesh mesh3{ {Vector2{2.0f, 7.0f}, Vector2{6.0f, 6.0f}, Vector2{0.0f, 0.0f}, Vector2{2.0f, 7.0f}}, Color{255.0f, 10.0f, 2.0f} };
-    Mesh mesh4{ {Vector2{8.0f, 7.0f}, Vector2{6.0f, 6.0f}, Vector2{2.0f, 2.0f}, Vector2{8.0f, 7.0f}}, Color{255.0f, 250.0f, 2.0f} };
-    Model model = std::vector<Mesh>{ mesh, mesh3, mesh4 };
+    Actor* player = m_scene->Instantiate("PlayerPrototype", Transform{ Vector2{600.0f, 600.0f}, 0.0f, 1.0f });
 
-    PlayerDesc playerDesc;
-    playerDesc.name = "Player";
-    playerDesc.tag = "Player";
-    playerDesc.speed = 1200.0f;
-    playerDesc.damping = 2.3f;
-    playerDesc.model = model;
-    playerDesc.texture = Resources().Get<Texture>("Textures/player.png", Engine::Get().GetRenderer());
-    playerDesc.transform = Transform{ Vector2{640.0f, 512.0f}, 0.0f, 1.0f };
+    if (!player) {
+        std::cerr << "[SpaceGame ERROR] Could not instantiate 'PlayerPrototype'! Verify scene.json key." << std::endl;
+    }
 
-    std::unique_ptr<Player> player = std::make_unique<Player>(playerDesc);
-    m_scene->AddActor(std::move(player));
     m_fuel = 2000;
 }
 
 void SpaceGame::SpawnEnemy()
 {
-    // Restored Original Mesh/Model setup
-    Mesh mesh{ {Vector2{-3.0f, 3.0f}, Vector2{3.0f, 3.0f}, Vector2{0.0f, 0.0f}, Vector2{-3.0f, 3.0f}}, Color{255.0f, 255.0f, 255.0f} };
-    Model model2 = std::vector<Mesh>{ mesh };
+    Transform enemyTransform{ Vector2{ ru::RandomFloat(100.0f, 1800.0f), ru::RandomFloat(100.0f, 600.0f) }, 0.0f, 1.0f };
 
-    EnemyDesc enemyDesc;
-    enemyDesc.name = "Enemy";
-    enemyDesc.tag = "Enemy";
-    enemyDesc.speed = 500.0f;
-    enemyDesc.damping = 3.0f;
-    enemyDesc.model = model2;
-    enemyDesc.texture = Resources().Get<Texture>("Textures/enemy.png", Engine::Get().GetRenderer());
-    enemyDesc.transform = Transform{ Vector2{ru::RandomFloat(1000.0f, 1900.0f), ru::RandomFloat(800.0f, 1200.0f)}, 90.0f, 1.0f };
-
-    std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemyDesc);
-    m_scene->AddActor(std::move(enemy));
+    if (!m_scene->Instantiate("EnemyPrototype", enemyTransform)) {
+        std::cerr << "Failed to instantiate EnemyPrototype!" << std::endl;
+    }
 
     if (max_Timer > 2.5f) {
         max_Timer -= 0.2f;
@@ -167,22 +179,12 @@ void SpaceGame::SpawnWave()
 {
     float thePosition = 0.0f;
 
-    // Restored Original Mesh/Model setup
-    Mesh mesh{ {Vector2{-3.0f, 3.0f}, Vector2{3.0f, 3.0f}, Vector2{2.0f, 2.0f}, Vector2{-6.0f, 6.0f}}, Color{255.0f, 255.0f, 255.0f} };
-    Model model2 = std::vector<Mesh>{ mesh };
-
-    EnemyDesc enemyDesc;
-    enemyDesc.name = "Enemy2";
-    enemyDesc.tag = "Enemy";
-    enemyDesc.speed = 300.0f;
-    enemyDesc.damping = 3.0f;
-    enemyDesc.model = model2;
-    enemyDesc.texture = Resources().Get<Texture>("Textures/wall.png", Engine::Get().GetRenderer());
-
     for (int i = 0; i < 60; i++) {
-        thePosition += 30;
-        enemyDesc.transform = Transform{ Vector2{thePosition, 0}, 90.0f, 1.0f };
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(enemyDesc);
-        m_scene->AddActor(std::move(enemy));
+        thePosition += 30.0f;
+        Transform wallTransform{ Vector2{thePosition, 0.0f}, 90.0f, 1.0f };
+
+        if (!m_scene->Instantiate("WallPrototype", wallTransform)) {
+            std::cerr << "Failed to instantiate WallPrototype!" << std::endl;
+        }
     }
 }

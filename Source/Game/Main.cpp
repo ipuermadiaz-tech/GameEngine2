@@ -13,52 +13,10 @@
 using namespace nu;
 
 
-//class Object
-//{
-//public:
-//    Object() { std::cout << "constructur\n"; }
-//    Object() { std::cout << "destructor\n"; }
-//
-//    Object(const Object& object) { std::cout << "copy\n"; }
-//    Object& operator = (const Object& object) { std::cout << "Assignment\n";return *this; }
-//};
+
 
 int main(int argc, char* argv[]) {
 
-
-
-  
-    //std::cout << "===========object============\n";
-    //{
-    //    Object objectA;
-    //    Object objectB(objectA);
-    //    Object objectC;
-    //    objectC = objectA;
-    //}
-    //std::cout << "****************************raw pointers*******************\n"; {
-    //    Object* objectA = new Object();
-    //    std::cout << objectA << std::endl;
-    //    Object* objectB = new Object(*objectA);
-    //    std::cout << objectB << std::endl;
-    //    Object* objectC = nullptr;
-    //    objectC = objectA;
-    //    std::cout << objectC << std::endl;
-
-    //    delete objectA;
-    //    delete objectB;
-    //
-    //
-    //
-    //}
-    //std::cout << "****************************raw pointers*******************\n"; {
-    //    std::unique_ptr<Object> objectA = std::make_unique<Object>();
-    //    std::cout << objectA.get() << std::endl;
-    //    std::unique_ptr<Object> objectB;
-    //    objectB = std::move(objectA);
-    //    std::cout << objectB.get() << std::endl;
-
-    //    objectB.reset();
-    //}
 
     nu::SetWorkingDirectory("Assets");
   // Engine engine;
@@ -134,9 +92,7 @@ int main(int argc, char* argv[]) {
     // mesh/Model
   
    
-    //Player
 
-    
    
 
 

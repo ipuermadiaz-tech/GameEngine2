@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Random.h"
 #include "Vector2.h"
 #include "Vector3.h"
@@ -19,32 +20,27 @@
 #include "ParticleSystem.h"
 #include "ResourceManager.h"
 #include "Json.h"
-//void fnEngine();
+#include "Factory.h"
+#include "Object.h"
 
-//void f()
-//{
-//	static int i;
-//	i++;
-//	std::cout << i << std::endl;
-//}
 
 namespace nu
 {
 	class Engine {
 	public:
-		static Engine& Get() { static Engine g_engine;return g_engine; }
+		static Engine& Get() { static Engine g_engine; return g_engine; }
 		bool Initialize();
 		void ShutDown();
 		void Update();
 		void Init();
 
-		/////////////////////
 		Input& GetInput() { return m_input; }
 		Renderer& GetRenderer() { return m_renderer; }
 		GameTime& GetTime() { return m_time; }
-		Engine& operator = (const Engine&) = delete;
 		Audio& GetAudio() { return m_audio; }
 		ParticleSystem& GetPS() { return m_particleSystem; }
+
+		Engine& operator=(const Engine&) = delete;
 
 	private:
 		Engine() = default;
@@ -53,11 +49,5 @@ namespace nu
 		Audio m_audio;
 		GameTime m_time;
 		ParticleSystem m_particleSystem;
-
-	
-
 	};
-
-	//extern ENGINE_API Engine g_engine;
-
 }

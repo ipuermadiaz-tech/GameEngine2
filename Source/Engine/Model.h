@@ -29,5 +29,4 @@ namespace nu
 		std::vector<Mesh> m_meshes;
 
 	};
-
 }

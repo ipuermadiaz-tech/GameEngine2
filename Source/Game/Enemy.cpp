@@ -1,67 +1,54 @@
 #include "Enemy.h"
-//#include "Renderer.h"
 #include "Engine.h"
 #include "Player.h"
 #include "SpaceGame.h"
+#include "Factory.h"
+#include "RigidBodyComponent.h"
+#include <iostream>
+
+static nu::RegisterActor<Enemy> regEnemy("Enemy");
+
 void Enemy::Update(float dt)
 {
-    if (GetName() == "Enemy") {
-        if (upndown) {
-            if (m_counter <= 1280) {
-                m_counter++;
-            }
-            else {
-                upndown = false;
-            }
+    // --- Regular Enemy Homing ---
+    if (m_tag == "Enemy")
+    {
+        Actor* player = m_scene->GetActorByName("Player"); // Or "PlayerPrototype" depending on scene setup
 
-        }
-        else {
-            if (m_counter >= -1280) {
-                m_counter--;
-            }
-            else {
-                upndown = true;
-            }
-        }
-        Player* player = m_scene->GetActorByName<Player>("Player");
         if (player)
         {
-            nu::Vector2 direction = player->GetTransform().position - m_transform.position;
-            float rotation = direction.Angle();
-            SetRotation(rotation * nu::RadToDeg);
+            nu::Vector2 direction = (player->GetTransform().position - m_transform.position).Normalized();
+            float angleInRadians = direction.Angle();
+            m_transform.rotation = angleInRadians * nu::RadToDeg;
 
-            //nu::Vector2 forward(1, 0);
-            //forward.Rotate(rotation);
-            //if (upndown) {
-            //    AddVelocity(forward * m_speed * dt);
-            //}
-            //else {
-            //    SubstractVelocity(forward * m_speed * dt);
-            //}
+            m_velocity = direction * m_speed;
         }
-
-        // SetRotation(m_transform.rotation + rotate * dt);
     }
-    nu::Vector2 forward{ 1,0 };//->
-    nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * m_speed;
-    AddVelocity(velocity * dt);
+    // --- Moving Wall Movement ---
+    else if (m_tag == "Wall")
+    {
+        nu::Vector2 forward{ 0.0f, 1.0f }; // Downward direction
+        m_velocity = forward * m_speed;
+    }
+
     Actor::Update(dt);
 }
 void Enemy::OnCollision(Actor* other)
 {
     if (other->GetTag() == "PlayerBullet")
-    {  
-        if (GetName() == "Enemy") {
+    {
+        if (GetTag() == "Enemy")
+        {
             SetDestroyed();
-            ((SpaceGame*)m_scene->GetGame())->AddPoints(100);
+            if (m_scene && m_scene->GetGame())
+            {
+                static_cast<SpaceGame*>(m_scene->GetGame())->AddPoints(100);
+            }
         }
-        
+
         other->SetDestroyed();
 
-        
-       
-
-        // create particle explosion
+        // Create particle explosion
         for (int i = 0; i < 100; i++)
         {
             nu::Particle particle;
@@ -73,11 +60,28 @@ void Enemy::OnCollision(Actor* other)
             nu::Engine::Get().GetPS().AddParticle(particle);
         }
     }
-
 }
 
 void Enemy::Draw(const nu::Renderer& renderer) const
 {
-    
     Actor::Draw(renderer);
+}
+
+bool Enemy::Read(const rapidjson::Value& value)
+{
+    if (!nu::Actor::Read(value)) return false;
+
+    if (value.HasMember("m_speed") && value["m_speed"].IsNumber()) {
+        m_speed = value["m_speed"].GetFloat();
+    }
+    else if (value.HasMember("speed") && value["speed"].IsNumber()) {
+        m_speed = value["speed"].GetFloat();
+    }
+
+    return true;
+}
+
+std::unique_ptr<nu::Object> Enemy::Clone() const
+{
+    return std::make_unique<Enemy>(*this);
 }
