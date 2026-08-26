@@ -5,16 +5,10 @@
 #include <memory>
 #include <string>
 
-#define FACTORY_REGISTER(classname)\
-class Register##classname\
-{\
-public: \
-    Register##classname()\
-{\
-nu:Factory::Instance().Register<classname>(#classname); \
-}\
-        };\
-        static Register##classname registerInstance;
+#define FACTORY_REGISTER(classname) \
+namespace { \
+    nu::RegisterActor<classname> registerInstance_##classname(#classname); \
+}
 
 namespace nu {
 

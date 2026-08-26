@@ -75,7 +75,6 @@ void Player::Update(float dt)
         }
     }
 
-    // Call base Update to perform position integration and nu::Wrap
     Actor::Update(dt);
 }
 
@@ -101,11 +100,6 @@ void Player::OnCollision(Actor* other)
             nu::Engine::Get().GetPS().AddParticle(particle);
         }
     }
-}
-
-std::unique_ptr<nu::Object> Player::Clone() const
-{
-    return std::make_unique<Player>(*this);
 }
 
 void Player::Draw(const nu::Renderer& renderer) const

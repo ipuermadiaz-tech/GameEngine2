@@ -1,7 +1,7 @@
 #include "SpriteRendererComponent.h"
 
 namespace nu {
-    FACTORY_REGISTER(SpriteRendererComponent);
+    FACTORY_REGISTER(SpriteRendererComponent)
     std::unique_ptr<Object> SpriteRendererComponent::Clone() const
     {
         return std::make_unique<SpriteRendererComponent>(*this);

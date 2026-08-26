@@ -9,9 +9,8 @@ namespace nu {
     class Component : public Object {
     public:
         Component() = default;
+        Component(const Component& other) = default;
         virtual ~Component() = default;
-
-        virtual std::unique_ptr<Object> Clone() const override = 0;
 
         virtual void Initialize() {}
         virtual void Update(float dt) {}

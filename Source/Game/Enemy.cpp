@@ -8,12 +8,20 @@
 
 static nu::RegisterActor<Enemy> regEnemy("Enemy");
 
+bool Enemy::Read(const rapidjson::Value& value)
+{
+    if (!nu::Actor::Read(value)) return false;
+
+    JSON_READ(value, m_speed);
+    return true;
+}
+
 void Enemy::Update(float dt)
 {
     // --- Regular Enemy Homing ---
     if (m_tag == "Enemy")
     {
-        Actor* player = m_scene->GetActorByName("Player"); // Or "PlayerPrototype" depending on scene setup
+        Actor* player = m_scene->GetActorByName("Player");
 
         if (player)
         {
@@ -33,6 +41,7 @@ void Enemy::Update(float dt)
 
     Actor::Update(dt);
 }
+
 void Enemy::OnCollision(Actor* other)
 {
     if (other->GetTag() == "PlayerBullet")
@@ -65,23 +74,4 @@ void Enemy::OnCollision(Actor* other)
 void Enemy::Draw(const nu::Renderer& renderer) const
 {
     Actor::Draw(renderer);
-}
-
-bool Enemy::Read(const rapidjson::Value& value)
-{
-    if (!nu::Actor::Read(value)) return false;
-
-    if (value.HasMember("m_speed") && value["m_speed"].IsNumber()) {
-        m_speed = value["m_speed"].GetFloat();
-    }
-    else if (value.HasMember("speed") && value["speed"].IsNumber()) {
-        m_speed = value["speed"].GetFloat();
-    }
-
-    return true;
-}
-
-std::unique_ptr<nu::Object> Enemy::Clone() const
-{
-    return std::make_unique<Enemy>(*this);
 }

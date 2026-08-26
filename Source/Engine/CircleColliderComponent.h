@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 #include "Actor.h"
-#include "Factory.h"
 
 namespace nu
 {
@@ -9,29 +8,13 @@ namespace nu
     {
     public:
         CircleColliderComponent() = default;
+        CircleColliderComponent(const CircleColliderComponent& other);
 
-        std::unique_ptr<Object> Clone() const override
-        {
-            return std::make_unique<CircleColliderComponent>(*this);
-        }
+        bool Read(const rapidjson::Value& value) override;
+        float GetRadius() const;
 
-        bool Read(const rapidjson::Value& value) override
-        {
-            JSON_READ(value, radius);
-            return true;
-        }
+        CLASS_PROTOTYPE(CircleColliderComponent)
 
-        float GetRadius() const
-        {
-            if (m_owner)
-            {
-                return radius * m_owner->m_transform.scale;
-            }
-            return radius;
-        }
-
-        float radius{ 0.0f };
+            float radius{ 0.0f };
     };
-
-    static RegisterActor<CircleColliderComponent> register_circle_collider("CircleColliderComponent");
 }

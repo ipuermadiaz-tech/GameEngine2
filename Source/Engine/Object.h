@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#define CLASS_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone const {return std::make_unique<classname>(*this);}
+#define CLASS_PROTOTYPE(classname) virtual std::unique_ptr<Object> Clone() const {return std::make_unique<classname>(*this);}
 
 namespace nu {
     class Object {
@@ -16,7 +16,7 @@ namespace nu {
         Object(const std::string& name) : m_name{ name } {}
         virtual ~Object() = default;
       
-        CLASS_PROTOTYPE(Object)
+        CLASS_PROTOTYPE(Object);
 
         virtual bool Read(const rapidjson::Value& value) {
             JSON_READ(value, m_name);

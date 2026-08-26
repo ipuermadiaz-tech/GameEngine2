@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Actor.h"
 #include <memory>
 
@@ -14,9 +13,13 @@ public:
     Bullet(float speed, const nu::Transform& transform) : Actor{ transform }, m_speed{ speed } {}
     Bullet(float speed, const nu::Transform& transform, const nu::Model& model) : Actor{ transform, model }, m_speed{ speed } {}
 
-    std::unique_ptr<nu::Object> Clone() const override;
+    // Copy Constructor
+    Bullet(const Bullet& other) : nu::Actor(other), m_speed{ other.m_speed } {}
+
     bool Read(const rapidjson::Value& value) override;
     void Update(float dt) override;
+
+    CLASS_PROTOTYPE(Bullet)
 
 private:
     float m_speed = 800.0f;

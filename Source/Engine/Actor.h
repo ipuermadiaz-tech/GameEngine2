@@ -39,7 +39,6 @@ namespace nu
         Actor(const Transform& transform) : m_transform{ transform }, m_destroyed{ false } {}
         Actor(const Transform& transform, const Model& model) : m_transform{ transform }, m_model{ model }, m_destroyed{ false } {}
         Actor(const Transform& transform, std::shared_ptr<nu::Texture> texture) : m_transform{ transform }, m_texture{ texture }, m_destroyed{ false } {}
-        Actor(const Actor& other);
         virtual ~Actor() = default;
 
         // --- Deep Copy Mechanics ---

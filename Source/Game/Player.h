@@ -21,17 +21,29 @@ public:
 
     Player() = default;
 
-    bool Read(const rapidjson::Value& value) override;
-
     Player(const nu::Transform& transform) : nu::Actor{ transform } {}
     Player(const nu::Transform& transform, const nu::Model& model) : nu::Actor{ transform, model } {}
 
-    std::unique_ptr<nu::Object> Clone() const override;
+    // Copy Constructor
+    Player(const Player& other)
+        : nu::Actor(other)
+        , counter{ other.counter }
+        , counterTarget{ other.counterTarget }
+        , canShoot{ other.canShoot }
+        , max_ammo{ other.max_ammo }
+        , m_ammo{ other.m_ammo }
+        , fuel{ other.fuel }
+        , m_speed{ other.m_speed }
+    {}
+
+    bool Read(const rapidjson::Value& value) override;
 
     void Update(float dt) override;
     void Draw(const nu::Renderer& renderer) const override;
     void OnCollision(Actor* other) override;
     int GetFuel() const { return fuel; }
+
+    CLASS_PROTOTYPE(Player)
 
 private:
     int counter = 0;

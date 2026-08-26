@@ -28,8 +28,3 @@ void Bullet::Update(float dt)
 
     Actor::Update(dt);
 }
-
-std::unique_ptr<nu::Object> Bullet::Clone() const
-{
-    return std::make_unique<Bullet>(*this);
-}
