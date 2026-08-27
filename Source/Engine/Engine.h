@@ -24,6 +24,9 @@
 #include "Object.h"
 
 
+#include "Physics.h"
+
+
 namespace nu
 {
 	class Engine {
@@ -41,9 +44,11 @@ namespace nu
 		ParticleSystem& GetPS() { return m_particleSystem; }
 
 		Engine& operator=(const Engine&) = delete;
+		Physics& GetPhysics() { return m_physics; }
 
 	private:
 		Engine() = default;
+		Physics m_physics;
 		Input m_input;
 		Renderer m_renderer;
 		Audio m_audio;

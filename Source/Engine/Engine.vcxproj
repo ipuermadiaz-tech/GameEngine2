@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>ENGINE_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,7 +118,7 @@
       <PreprocessorDefinitions>ENGINE_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +141,7 @@
       <PreprocessorDefinitions>ENGINE_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +166,7 @@
       <PreprocessorDefinitions>ENGINE_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -195,6 +195,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />

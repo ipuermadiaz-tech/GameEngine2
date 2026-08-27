@@ -93,13 +93,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib;box2dd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform);$(SolutionDir)Source\ThirdParty\box2d\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:Engine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
@@ -115,13 +115,13 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib;box2dd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform);$(SolutionDir)Source\ThirdParty\box2d\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:Engine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
@@ -135,13 +135,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib;box2dd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform);$(SolutionDir)Source\ThirdParty\box2d\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:Engine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
@@ -157,13 +157,13 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\box2d\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sdl3.lib;fmod_vc.lib;sdl3_ttf.lib;sdl3_image.lib;box2dd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Source\ThirdParty\SDL3\lib\x64;$(SolutionDir)Source\ThirdParty\fmod\core\lib\$(Platform);$(SolutionDir)Source\ThirdParty\box2d\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/WHOLEARCHIVE:Engine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
