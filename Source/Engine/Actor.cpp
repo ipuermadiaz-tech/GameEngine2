@@ -153,8 +153,8 @@ namespace nu
 
         if (m_tag != "PlayerBullet" && m_tag != "Wall")
         {
-            m_transform.position.x = nu::Wrap(m_transform.position.x, 0.0f, 1920.0f);
-            m_transform.position.y = nu::Wrap(m_transform.position.y, 0.0f, 1024.0f);
+            m_transform.position.x = nu::Wrap(0.0f, 1920.0f, m_transform.position.x);
+            m_transform.position.y = nu::Wrap(0.0f, 1024.0f, m_transform.position.y);
         }
     }
 
