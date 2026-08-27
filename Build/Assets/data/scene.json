@@ -5,10 +5,12 @@
       "name": "BulletPrototype",
       "tag": "PlayerBullet",
       "lifespan": 5.0,
+      "m_speed": 800.0,
       "components": [
         {
           "type": "SpriteRendererComponent",
-          "textureName": "Textures/bullet.png"
+          "textureName": "Textures/bullet.png",
+          "texture": "Textures/bullet.png"
         },
         {
           "type": "RigidBodyComponent",
@@ -25,10 +27,13 @@
       "type": "Enemy",
       "name": "EnemyPrototype",
       "tag": "Enemy",
+      "lifespan": 0.0,
+      "m_speed": 100.0,
       "components": [
         {
           "type": "SpriteRendererComponent",
-          "textureName": "Textures/enemy.png"
+          "textureName": "Textures/enemy.png",
+          "texture": "Textures/enemy.png"
         },
         {
           "type": "RigidBodyComponent",
@@ -45,10 +50,13 @@
       "type": "Enemy",
       "name": "WallPrototype",
       "tag": "Wall",
+      "lifespan": 0.0,
+      "m_speed": 150.0,
       "components": [
         {
           "type": "SpriteRendererComponent",
-          "textureName": "Textures/wall.png"
+          "textureName": "Textures/wall.png",
+          "texture": "Textures/wall.png"
         },
         {
           "type": "RigidBodyComponent",
@@ -65,10 +73,13 @@
       "type": "Player",
       "name": "PlayerPrototype",
       "tag": "Player",
+      "lifespan": 0.0,
+      "m_speed": 800.0,
       "components": [
         {
           "type": "SpriteRendererComponent",
-          "textureName": "Textures/player.png"
+          "textureName": "Textures/player.png",
+          "texture": "Textures/player.png"
         },
         {
           "type": "RigidBodyComponent",

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <string>
+
 namespace nu
 {
 	class Resource

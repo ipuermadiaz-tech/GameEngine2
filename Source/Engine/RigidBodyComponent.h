@@ -14,11 +14,12 @@ namespace nu
         void Update(float dt) override;
 
         void SetVelocity(const Vector2& velocity) { m_velocity = velocity; }
+        void AddVelocity(const Vector2& vel) { velocity += vel; }
         Vector2 GetVelocity() const { return m_velocity; }
 
         CLASS_PROTOTYPE(RigidBodyComponent)
 
-            Vector2 velocity{ 0.0f, 0.0f };
+        Vector2 velocity{ 0.0f, 0.0f };
         float damping{ 0.0f };
 
     private:

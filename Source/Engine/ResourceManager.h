@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+
 namespace nu
 {
 	class ResourceManager : public Singleton<ResourceManager>

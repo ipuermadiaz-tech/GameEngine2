@@ -28,19 +28,22 @@ void Player::Update(float dt)
     if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) rotate -= 180.0f;
     if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) rotate += 180.0f;
 
-    SetRotation(m_transform.rotation + rotate * dt);
+    auto physicsComponent = GetComponent<nu::RigidBodyComponent>();
+    if (physicsComponent)
+    {
+        SetRotation(m_transform.rotation + rotate * dt);
 
-    nu::Vector2 forward{ 0, -1 };
-    nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
+        nu::Vector2 forward{ 0, 1 };
+        nu::Vector2 velocity = forward.Rotate(m_transform.rotation * nu::DegToRad) * thrust;
 
-    AddVelocity(velocity * dt);
-    if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_Q) && nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_W) && fuel > 0) {
-        AddVelocity(velocity * dt);
-        fuel--;
-        if (m_scene && m_scene->GetGame()) {
-            ((SpaceGame*)m_scene->GetGame())->SetFuel(fuel);
-        }
+       
+        physicsComponent->AddVelocity(velocity * dt);
+    
+        
     }
+
+
+
 
     if (!canShoot) {
         counter++;
