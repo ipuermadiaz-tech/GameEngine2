@@ -101,6 +101,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source\Input</Filter>
     </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -201,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

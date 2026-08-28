@@ -1,8 +1,9 @@
+#include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
 #include "Factory.h"
 #include "Json.h"
-#include <iostream>
+//#include <iostream>
 
 namespace nu
 {

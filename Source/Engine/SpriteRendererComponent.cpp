@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "SpriteRendererComponent.h"
 
 namespace nu {

@@ -1,7 +1,6 @@
 //miau
+#include "pch.h"
 #include "Engine.h"
-//#include "framework.h"
-#include <iostream>
 
 namespace nu
 {

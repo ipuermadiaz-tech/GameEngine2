@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "RigidBodyComponent.h"
 #include "Actor.h"
 #include "Factory.h"

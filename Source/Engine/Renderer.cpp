@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "Renderer.h"
-#include <iostream>
 #include "Transformer.h"
 #include "Mesh.h"
 #include "Model.h"

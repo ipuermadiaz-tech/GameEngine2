@@ -10,10 +10,10 @@
 #include "Json.h"
 #include "Component.h"
 #include "RenderComponent.h"
-#include <iostream>
-#include <memory>
-#include <string>
-#include <vector>
+//#include <iostream>
+//#include <memory>
+//#include <string>
+//#include <vector>
 
 namespace nu
 {

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Actor.h"
 #include "Vector2.h"
 #include "Transformer.h"
@@ -9,7 +10,7 @@
 #include "ResourceManager.h"
 #include "Json.h"
 #include "CircleColliderComponent.h"
-#include <iostream>
+
 
 namespace nu
 {

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CircleColliderComponent.h"
 #include "Factory.h"
 #include "Json.h"
