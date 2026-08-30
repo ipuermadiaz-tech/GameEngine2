@@ -54,9 +54,12 @@
       "m_speed": 150.0,
       "components": [
         {
-          "type": "SpriteRendererComponent",
-          "textureName": "Textures/wall.png",
-          "texture": "Textures/wall.png"
+          "type": "SpriteAnimationRendererComponent",
+          "textureName": "Textures/bat.png",
+          "fps": 10.0,
+          "columns": 4,
+          "rows": 1,
+          "count": 4
         },
         {
           "type": "RigidBodyComponent",
@@ -65,7 +68,7 @@
         },
         {
           "type": "CircleColliderComponent",
-          "radius": 32.0
+          "radius": 24.0
         }
       ]
     },

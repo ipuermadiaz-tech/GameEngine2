@@ -35,6 +35,7 @@ namespace nu {
         
         void DrawTexture(Texture* texture, float x, float y) const;
         void DrawTexture(Texture* texture, const Transform& transform) const;
+        void DrawTexture(Texture* texture, const SDL_FRect& sourceRect, const Transform& transform) const;
 
     private:
         SDL_Window* m_window = nullptr;

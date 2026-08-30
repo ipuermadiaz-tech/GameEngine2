@@ -54,7 +54,9 @@ void SpaceGame::Update(float dt)
     case GameState::StartLevel:
         m_scene->RemoveAllActors();
         SpawnPlayer();
+        SpawnWave();
         m_gameState = GameState::Game;
+        
         break;
 
     case GameState::Game:

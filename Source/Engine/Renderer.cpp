@@ -156,3 +156,32 @@ void nu::Renderer::DrawTexture(Texture* texture, const Transform& transform) con
         SDL_FLIP_NONE
     );
 }
+void nu::Renderer::DrawTexture(Texture* texture, const SDL_FRect& sourceRect, const Transform& transform) const
+{
+    if (!texture || !texture->m_texture) return;
+
+    SDL_SetTextureBlendMode(texture->m_texture, SDL_BLENDMODE_BLEND);
+
+    // Scale destination size by frame dimensions instead of full texture size
+    float width = sourceRect.w * transform.scale;
+    float height = sourceRect.h * transform.scale;
+
+    SDL_FRect destRect;
+    destRect.w = width;
+    destRect.h = height;
+    destRect.x = transform.position.x - (width * 0.5f);
+    destRect.y = transform.position.y - (height * 0.5f);
+
+    SDL_FPoint center{ width * 0.5f, height * 0.5f };
+    double angleInDegrees = transform.rotation;
+
+    SDL_RenderTextureRotated(
+        m_renderer,
+        texture->m_texture,
+        &sourceRect, // Pass source sub-rectangle here instead of NULL
+        &destRect,
+        angleInDegrees,
+        &center,
+        SDL_FLIP_NONE
+    );
+}

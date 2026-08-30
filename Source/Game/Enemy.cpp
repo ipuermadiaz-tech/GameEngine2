@@ -77,7 +77,24 @@ void Enemy::OnCollision(Actor* other)
 
 void Enemy::Draw(const nu::Renderer& renderer) const
 {
-    Actor::Draw(renderer);
+    if (m_tag == "Wall")
+    {
+        // Store current rotation
+        float originalRotation = m_transform.rotation;
+
+        // Apply visual offset (-90.0f or 90.0f depending on desired sprite direction)
+        const_cast<Enemy*>(this)->m_transform.rotation += 90.0f;
+
+        // Calls components using the modified rotation
+        Actor::Draw(renderer);
+
+        // Restore original rotation so physics/movement are unaffected
+        const_cast<Enemy*>(this)->m_transform.rotation = originalRotation;
+    }
+    else
+    {
+        Actor::Draw(renderer);
+    }
 }
 
 bool Enemy::Read(const rapidjson::Value& value)

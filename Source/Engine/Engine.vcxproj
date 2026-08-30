@@ -214,9 +214,11 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SpriteAnimationRendererComponent.cpp" />
     <ClCompile Include="SpriteRendererComponent.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -247,9 +249,11 @@
     <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SpriteAnimationRendererComponent.h" />
     <ClInclude Include="SpriteRendererComponent.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureFrames.h" />
     <ClInclude Include="Transformer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
