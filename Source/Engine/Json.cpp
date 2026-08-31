@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Json.h"
 #include "File.h"
-//#include <rapidjson/istreamwrapper.h>
-//#include <rapidjson/error/en.h>
-//#include <iostream>
-//#include <sstream>
+#include <rapidjson/istreamwrapper.h>
+#include <rapidjson/error/en.h>
+#include <iostream>
+#include <sstream>
 
 namespace nu::json
 {
@@ -14,7 +14,7 @@ namespace nu::json
         std::string buffer;
         if (!ReadTextFile(filename, buffer))
         {
-            std::cerr << "Could not read file:" << filename << std::endl;
+            std::cerr << "Could not read file: " << filename << std::endl;
             return false;
         }
 
@@ -43,11 +43,11 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, int& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt())
         {
-            std::cerr << "Could not read JSON value (int): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (int): " << name << std::endl;
             return false;
         }
 
@@ -55,11 +55,11 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, float& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, float& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsNumber())
         {
-            std::cerr << "Could not read JSON value (float): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (float): " << name << std::endl;
             return false;
         }
 
@@ -67,11 +67,11 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, bool& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, bool& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool())
         {
-            std::cerr << "Could not read JSON value (bool): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (bool): " << name << std::endl;
             return false;
         }
 
@@ -79,11 +79,11 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, std::string& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, std::string& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString())
         {
-            std::cerr << "Could not read JSON value (string): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (string): " << name << std::endl;
             return false;
         }
 
@@ -91,18 +91,18 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() < 2)
         {
-            std::cerr << "Could not read JSON value (Vector2): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (Vector2): " << name << std::endl;
             return false;
         }
 
         const auto& array = value[name.c_str()];
         if (!array[0].IsNumber() || !array[1].IsNumber())
         {
-            std::cerr << "Could not read JSON value (Vector2 elements): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (Vector2 elements): " << name << std::endl;
             return false;
         }
 
@@ -111,24 +111,43 @@ namespace nu::json
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, Vector3& data)
+    bool Read(const rapidjson::Value& value, const std::string& name, Vector3& data, bool isRequired)
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() < 3)
         {
-            std::cerr << "Could not read JSON value (Vector3): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (Vector3): " << name << std::endl;
             return false;
         }
 
         const auto& array = value[name.c_str()];
         if (!array[0].IsNumber() || !array[1].IsNumber() || !array[2].IsNumber())
         {
-            std::cerr << "Could not read JSON value (Vector3 elements): " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read JSON value (Vector3 elements): " << name << std::endl;
             return false;
         }
 
         data.x = array[0].GetFloat();
         data.y = array[1].GetFloat();
         data.z = array[2].GetFloat();
+        return true;
+    }
+
+    bool Read(const rapidjson::Value& value, const std::string& name, std::vector<int>& data, bool isRequired)
+    {
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray())
+        {
+            if (isRequired) std::cerr << "Could not read JSON value (std::vector<int>): " << name << std::endl;
+            return false;
+        }
+
+        data.clear();
+        for (const auto& element : value[name.c_str()].GetArray())
+        {
+            if (element.IsInt())
+            {
+                data.push_back(element.GetInt());
+            }
+        }
         return true;
     }
 }

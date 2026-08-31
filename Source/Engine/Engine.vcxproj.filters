@@ -110,6 +110,9 @@
     <ClCompile Include="SpriteAnimationRendererComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -218,6 +221,18 @@
       <Filter>Source\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAnimationRendererComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Source\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TilemapRendererComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

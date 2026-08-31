@@ -219,6 +219,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureFrame.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -242,6 +243,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
@@ -251,9 +253,12 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpriteAnimationRendererComponent.h" />
     <ClInclude Include="SpriteRendererComponent.h" />
+    <ClInclude Include="StringUtils.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureFrames.h" />
+    <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="TilemapRendererComponent.h" />
     <ClInclude Include="Transformer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
