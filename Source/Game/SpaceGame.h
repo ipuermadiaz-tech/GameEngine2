@@ -1,5 +1,5 @@
 #pragma once
-#include "Game.h"
+#include "Framework/Game.h"
 #include "Text.h"
 
 namespace nu {
@@ -33,6 +33,7 @@ public:
     void SetFuel(int points) { m_fuel = points; }
 
 private:
+    void SpawnMap();
     void SpawnPlayer();
     void SpawnEnemy();
     void SpawnWave();

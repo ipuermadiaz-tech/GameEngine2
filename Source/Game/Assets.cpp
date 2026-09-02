@@ -1,7 +1,7 @@
 #include "Assets.h"
-#include "Mesh.h"
-#include "Vector3.h"
-#include "Model.h"
+//#include "Renderer/Mesh.h"
+#include "Math/Vector3.h"
+#include "Renderer/Model.h"
 
 using namespace nu;
 

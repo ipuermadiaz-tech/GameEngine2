@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Text.h"
-#include "Vector3.h"
-#include "Renderer.h"
+#include "Math/Vector3.h"
+#include "Renderer/Renderer.h"
 namespace nu {
 
 	Text::~Text() {

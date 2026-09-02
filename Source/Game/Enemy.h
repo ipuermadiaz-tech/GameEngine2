@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Actor.h"
-#include "Renderer.h"
+#include "Framework/Actor.h"
+#include "Renderer/Renderer.h"
 #include <memory>
 
 struct EnemyDesc : public nu::ActorDesc

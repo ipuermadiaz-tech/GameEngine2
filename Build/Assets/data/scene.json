@@ -1,6 +1,17 @@
 {
   "prototypes": [
     {
+      "name": "MapPrototype",
+      "type": "Actor",
+      "tag": "Map",
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "Tilemaps/world.json"
+        }
+      ]
+    },
+    {
       "type": "Bullet",
       "name": "BulletPrototype",
       "tag": "PlayerBullet",

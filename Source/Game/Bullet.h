@@ -1,5 +1,5 @@
 #pragma once
-#include "Actor.h"
+#include "Framework/Actor.h"
 #include <memory>
 
 struct BulletDesc : public nu::ActorDesc {

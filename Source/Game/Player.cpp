@@ -1,9 +1,9 @@
 #include "Player.h"
-#include "Renderer.h"
+#include "Renderer/Renderer.h"
 #include "Engine.h"
 #include "SpaceGame.h"
-#include "Factory.h"
-#include "RigidBodyComponent.h"
+#include "Core/Factory.h"
+#include "Components/RigidBodyComponent.h"
 #include <cmath>
 
 static nu::RegisterActor<Player> regPlayer("Player");

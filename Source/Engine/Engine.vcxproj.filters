@@ -9,36 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source\Core">
-      <UniqueIdentifier>{1f05afd9-158e-4340-bfbf-245565c935d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Components">
-      <UniqueIdentifier>{e6978e26-fded-4765-885c-e5497569d15c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Physics">
-      <UniqueIdentifier>{7df40119-1fee-4df8-bb2b-30b2470ae5d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Audio">
-      <UniqueIdentifier>{e8324799-ee4c-4306-859a-8309175e92e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Renderer">
-      <UniqueIdentifier>{50e9024c-8f7d-4d58-8804-b6d5723973c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Framework">
-      <UniqueIdentifier>{07abafc6-a335-4344-aa0b-33b7a942acec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Serialization">
-      <UniqueIdentifier>{e1b4e67d-660b-4748-aa48-411af95b5b1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Resources">
-      <UniqueIdentifier>{5f3a77c5-5eb7-4017-9b0a-f937cefc06c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Math">
-      <UniqueIdentifier>{7ff03c47-431b-4071-8d77-943aa11f0ef6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Input">
-      <UniqueIdentifier>{952d4642-0954-4e76-9aa8-564f51924f46}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -47,71 +17,77 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="CircleColliderComponent.cpp">
-      <Filter>Source\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RigidBodyComponent.cpp">
-      <Filter>Source\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRendererComponent.cpp">
-      <Filter>Source\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Physics.cpp">
-      <Filter>Source\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>Source\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTime.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Json.cpp">
-      <Filter>Source\Serialization</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Source\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="File.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source\Input</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="TextureFrame.cpp">
-      <Filter>Source\Renderer</Filter>
+    <ClCompile Include="Framework\Actor.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteAnimationRendererComponent.cpp">
-      <Filter>Source\Components</Filter>
+    <ClCompile Include="Framework\Game.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Tilemap.cpp">
-      <Filter>Source\Renderer</Filter>
+    <ClCompile Include="Framework\Scene.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicBody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Physics.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Font.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Mesh.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Model.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\ParticleSystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\TextureFrame.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Tilemap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\Json.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\Audio.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CircleColliderComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RigidBodyComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimationRendererComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteRendererComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TilemapRendererComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\File.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameTime.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,119 +97,122 @@
     <ClInclude Include="Text.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="CircleColliderComponent.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshRendererComponent.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderComponent.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRendererComponent.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBodyComponent.h">
-      <Filter>Source\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.h">
-      <Filter>Source\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>Source\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTime.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Source\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Source\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Source\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Source\Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Json.h">
-      <Filter>Source\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Source\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Math_Util.h">
-      <Filter>Source\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Source\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Source\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Transformer.h">
-      <Filter>Source\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Source\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>Source\Core</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="TextureFrames.h">
-      <Filter>Source\Renderer</Filter>
+    <ClInclude Include="Framework\Actor.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteAnimationRendererComponent.h">
-      <Filter>Source\Components</Filter>
+    <ClInclude Include="Framework\Game.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Tilemap.h">
-      <Filter>Source\Renderer</Filter>
+    <ClInclude Include="Framework\Object.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>Source\Math</Filter>
+    <ClInclude Include="Framework\Scene.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="StringUtils.h">
-      <Filter>Source\Core</Filter>
+    <ClInclude Include="Input\Input.h">
+      <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="TilemapRendererComponent.h">
-      <Filter>Source\Components</Filter>
+    <ClInclude Include="Math\Math_Util.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transformer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Physics.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsBody.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Font.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Mesh.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Model.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\ParticleSystem.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Texture.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\TextureFrames.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Tilemap.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourceManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\Json.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\Audio.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CircleColliderComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshRendererComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RenderComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RigidBodyComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimationRendererComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteRendererComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapRendererComponent.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Factory.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\File.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameTime.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Random.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Singleton.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StringUtils.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 #include "Bullet.h"
-#include "Math_Util.h"
-#include "Factory.h"
-#include "Json.h"
-#include "RigidBodyComponent.h"
+#include "Math/Math_Util.h"
+#include "Core/Factory.h"
+#include "Serialization/Json.h"
+#include "Components/RigidBodyComponent.h"
 
 static nu::RegisterActor<Bullet> regBullet("Bullet");
 

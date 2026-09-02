@@ -2,8 +2,8 @@
 #include "Engine.h"
 #include "Player.h"
 #include "SpaceGame.h"
-#include "Factory.h"
-#include "RigidBodyComponent.h"
+#include "Core/Factory.h"
+#include "Components/RigidBodyComponent.h"
 #include <iostream>
 
 static nu::RegisterActor<Enemy> regEnemy("Enemy");

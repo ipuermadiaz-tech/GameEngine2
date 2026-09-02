@@ -2,8 +2,8 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Factory.h"
-#include "ResourceManager.h"
+#include "Core/Factory.h"
+#include "Resources/ResourceManager.h"
 #include <iostream>
 #include <algorithm>
 
@@ -53,10 +53,10 @@ void SpaceGame::Update(float dt)
 
     case GameState::StartLevel:
         m_scene->RemoveAllActors();
+        SpawnMap();
         SpawnPlayer();
         SpawnWave();
         m_gameState = GameState::Game;
-        
         break;
 
     case GameState::Game:
@@ -73,7 +73,6 @@ void SpaceGame::Update(float dt)
             }
         }
 
-        // --- FIXED: Drive scene updates and physics collisions ---
         if (m_scene)
         {
             m_scene->Update(dt);
@@ -108,7 +107,6 @@ void SpaceGame::Draw(const nu::Renderer& renderer)
         break;
 
     case GameState::Game:
-        // --- FIXED: Render all active scene actors and components ---
         if (m_scene)
         {
             m_scene->Draw(renderer);
@@ -148,6 +146,15 @@ void SpaceGame::OnPlayerDead()
     wave_counter = 10;
     if (m_lives == 0) m_gameState = GameState::GameOver;
     else m_gameState = GameState::StartLevel;
+}
+
+void SpaceGame::SpawnMap()
+{
+    Actor* map = m_scene->Instantiate("MapPrototype", Transform{ Vector2{600.0f, 600.0f}, 0.0f, 1.0f });
+    if (!map) {
+        std::cerr << "[SpaceGame ERROR] Could not instantiate 'MapPrototype'! Check scene.json." << std::endl;
+        return;
+    }
 }
 
 void SpaceGame::SpawnPlayer()

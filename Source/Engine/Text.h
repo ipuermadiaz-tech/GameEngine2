@@ -1,7 +1,7 @@
 #pragma once
-#include "Font.h"
-#include "Vector3.h"
-#include "ResourceManager.h"
+#include "Renderer/Font.h"
+#include "Math/Vector3.h"
+#include "Resources/ResourceManager.h"
 struct SDL_Texture;
 namespace nu {
     class Renderer;
