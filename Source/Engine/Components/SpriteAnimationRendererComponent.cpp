@@ -18,6 +18,8 @@ namespace nu
             m_textureFrames = ResourceManager::Instance().Get<nu::TextureFrames>(textureName, Engine::Get().GetRenderer());
         }
 
+        // Default m_fps to a reasonable value if JSON read fails
+        m_fps = 1.0f;
         JSON_READ(value, m_fps);
 
         int columns = 1;
@@ -33,19 +35,24 @@ namespace nu
             m_textureFrames->CreateFrames(columns, rows, count);
         }
 
+        // Reset frame state on read
+        m_frame = 0;
+        m_frameTimer = 0.0f;
+
         return true;
     }
 
     void SpriteAnimationRendererComponent::Update(float dt)
     {
         if (!m_textureFrames || m_textureFrames->GetFrameCount() == 0) return;
+        if (m_fps <= 0.0f) return;
 
         m_frameTimer += dt;
         float frameDuration = 1.0f / m_fps;
 
         if (m_frameTimer >= frameDuration)
         {
-            m_frameTimer -= frameDuration;
+            m_frameTimer = 0.0f; // Reset timer directly
             m_frame = (m_frame + 1) % m_textureFrames->GetFrameCount();
         }
     }

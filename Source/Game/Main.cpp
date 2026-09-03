@@ -1,46 +1,33 @@
 #include "pch.h"
-//#include <SDL3/SDL.h>
-#include "Enemy.h"
-//#include <iostream>
-//#include <vector>
 #include "Engine.h"
-#include "Player.h"
-#include "Main.h"
-//#include <fmod.hpp>
-//#include <map>
-#include "SpaceGame.h"
-//#include <memory>
+#include "SpriteGame/SpriteGame.h"
+#include <memory>
+#include <iostream>
+#include <vector>
 
 using namespace nu;
 
+int main(int argc, char* argv[])
+{
+    // 1. Working directory setup
+    nu::SetWorkingDirectory("Assets/SpriteGame");
 
-
-
-int main(int argc, char* argv[]) {
-
-
-    nu::SetWorkingDirectory("Assets");
-  // Engine engine;
+    // 2. Initialize Engine
     Engine::Get().Initialize();
 
-    SpaceGame sgame;
-    sgame.Initialize();
+    // 3. Game setup (MUST be reset/destroyed BEFORE Engine::ShutDown)
+    std::unique_ptr<SpriteGame> game = std::make_unique<SpriteGame>();
+    game->Initialize();
 
-    ///JSon
-
-    // load the json data from a file
-    // load the json data from a file
+    // --- JSON Load Test ---
     std::string buffer;
     if (ReadTextFile("data/data.json", buffer))
     {
-        // show the contents of the json file (debug)
         std::cout << buffer << std::endl;
 
-        // create json document from the json file contents
         rapidjson::Document document;
         if (json::Load("data/data.json", document))
         {
-            // read/show the data from the json file
             std::string name;
             int age;
             float speed;
@@ -48,7 +35,6 @@ int main(int argc, char* argv[]) {
             nu::Vector2 position;
             nu::Vector3 color;
 
-            // read the json data
             JSON_READ(document, name);
             JSON_READ(document, age);
             JSON_READ(document, speed);
@@ -56,265 +42,89 @@ int main(int argc, char* argv[]) {
             JSON_READ(document, position);
             JSON_READ(document, color);
 
-
-
-            // show the data
             std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
             std::cout << position.x << " " << position.y << std::endl;
             std::cout << color.x << " " << color.y << " " << color.z << std::endl;
         }
     }
 
+    // --- Resource & Variable Setup (OUTSIDE LOOP) ---
+    auto texture = Resources().Get<Texture>("Textures/Background.png", Engine::Get().GetRenderer());
 
-   
-    
+    std::vector<Vector2> points;
+    for (int i = 0; i < 300; i++) {
+        points.push_back(Vector2{ ru::RandomFloat(1280), ru::RandomFloat(1024) });
+    }
 
-    
-    
-
-
-    union
-    {
-        struct { float x, y, z; };
-        struct { float r, g, b; };
+    // Mesh declared once outside loop
+    Mesh bulletMesh{
+        {
+            Vector2{ -1, -1 },
+            Vector2{ 1, 0 },
+            Vector2{ -1, 1 },
+            Vector2{ -1, -1 },
+        },
+        Color{ 1.0f, 0.0f, 0.0f }
     };
 
-    nu::Renderer renderer;
-    //renderer.Initialize("Game Engine", 1920, 1024);
-    //g_engine.Initialize();
-
-
-    Vector2 velocity(0.0f, 0.0f);
-    Vector2 position{ 640,512 };
-    float speed = 400.0f;
-    
-    Scene scene;
-
-    // mesh/Model
-  
-   
-
-   
-
-
-
-
-
-    //Actor player{ Transform{Vector2{640.0f,512.0f},0.0f,50.0f} };
-
-	nu::Input input;
-
-
-   //Vector2 v[300];
-    std::vector<Vector2> points;
-
-    float xs[300];
-    float ys[300];
-
-    for (int i = 0;i < 300;i++) {
-        xs[i] = ru::RandomFloat(1280);
-        ys[i] = ru::RandomFloat(1024);
-    }
-	//engine 
     SDL_Event event;
 
-    uint64_t ticks = SDL_GetTicksNS();
-    uint64_t prevticks=ticks;
-    // create texture, using shared_ptr so texture can be shared
-// create texture, using shared_ptr so texture can be shared
-    //std::shared_ptr<nu::Texture> texture = std::make_shared<nu::Texture>();
-
-    //texture->Load("Textures/Thorn of Love.png", nu::Engine::Get().GetRenderer());
-
-
-    auto texture = Resources().Get<Texture>("Textures/Background.png", Engine::Get().GetRenderer());
-    
-
-    //Main Loop
+    // --- MAIN LOOP ---
     bool quit = false;
-    	//input.Initialize();
-    while (!quit) {
-        
-
-        //UPDATE
-        while (SDL_PollEvent(&event)) {
+    while (!quit)
+    {
+        // 1. INPUT / EVENTS
+        while (SDL_PollEvent(&event))
+        {
             if (event.type == SDL_EVENT_QUIT) {
                 quit = true;
             }
-            if (event.type == SDL_EVENT_KEY_DOWN&&event.key.scancode == SDL_SCANCODE_ESCAPE){
-                quit=true;
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
+                quit = true;
             }
-       }
+        }
 
         if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_1))
         {
             Engine::Get().GetAudio().PlaySound("bass");
         }
-        //emgome
-        Engine::Get().Update();
-        sgame.Update(Engine::Get().GetTime().GetDeltaTime());
-        //if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_1))
-        //{
-        //    audio->playSound(sounds[0], nullptr, false, nullptr);
-        //}
 
-        //if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_2))
-        //{
-        //    audio->playSound(sounds[1], nullptr, false, nullptr);
-        //}
-        //else if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_3))
-        //{
-        //    audio->playSound(sounds[2], nullptr, false, nullptr);
-        //}
-        //else if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_4))
-        //{
-        //    audio->playSound(sounds[3], nullptr, false, nullptr);
-        //}
-        //else if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_5))
-        //{
-        //    audio->playSound(sounds[4], nullptr, false, nullptr);
-        //}
-
-
-        Mesh bulletMesh{
-  {
-    Vector2{ -1, -1 },
-    Vector2{ 1, 0 },
-    Vector2{ -1, 1 },
-    Vector2{ -1, -1 },
-  },
-  Color{ 1.0f, 0.0f, 0.0f }
-        };
-
-     
-
-
-
-
-		//input.Update();
-
-
-        prevticks = ticks;
-        ticks = SDL_GetTicksNS();
-
-        
-
-        float seconds = (float)ticks / 1'000'000'000;
-        float dt = (float)(ticks - prevticks) / 1'000'000'000;
-
-		Vector2 mousePosition;
-		SDL_GetMouseState(&mousePosition.x, &mousePosition.y);
-
-      
-        Vector2 force = (0.0f,0.f);
-   
-
-        velocity += (force * dt);
-        position += (velocity * dt);
-
-
-        position.x = Wrap(0.0f, 1920.0f, position.x);
-
-        position.y = Wrap(0.0f, 1024.0f, position.y);
-
-        //if (position.x > 10) position.x = 0;
-        //if (position.x < 0) position.x = 1279;
-
-        //RENDER
-        Engine::Get().GetRenderer().SetColor(0, 0, 0);
-       
-        //g_engine.GetRenderer().DrawFillRect(position.x, position.y, 50, 50);
-
-        //for (int i = 0; i < 300; i++) {
-        //    Vector2 vec{ ru::RandomFloat() ,ru::RandomFloat() };
-        //    points.push_back(vec);
-
-        //}
-        //for (int i = 0; i < 100; i++) {
-        //    renderer.SetColor(ru::RandomInt(255), ru::RandomInt(255), ru::RandomInt(255));
-
-        //    //vect[i] = vect[i]+vel;]
-        //   
-        //    //renderer.DrawPoint(vect[i].x, vect[i].y);
-        //    renderer.DrawPoint(ru::RandomInt(1920), ru::RandomInt(1024));
-        //}
-
-        for (int i = 0; i < points.size(); i++) {
-            Engine::Get().GetRenderer().SetColor(ru::RandomInt(255), ru::RandomInt(255), ru::RandomInt(255));
-
-            //points[i] = points[i];
-
-            Engine::Get().GetRenderer().DrawPoint(points[i].x, points[i].y);
-          
-        }
-        
-
-        //if(input.GetButtonPressed(Input::MouseButton::Left))
-        //{
-        //    points.push_back(input.GetMousePosition());
-        //}
-        //player.Update(dt);
-        //enemy.Update(dt);
-        scene.Update(dt);
-        //if (g_engine.GetInput().GetButtonDown(Input::MouseButton::Left))
-        //{
-        //    if (points.empty())
-        //    {
-        //        points.push_back(g_engine.GetInput().GetMousePosition());
-        //    }
-
-        //           Vector2 v= points.back()- g_engine.GetInput().GetMousePosition();
-        //  if (v.Length() > 10.0f) {
-        //      points.push_back(g_engine.GetInput().GetMousePosition());
-        //  }
-        //}
-
-        //if (!points.empty()) {
-        //    for (size_t i = 0;i < points.size() - 1;i++) {
-        //        g_engine.GetRenderer().SetColor(ru::RandomInt(255), ru::RandomInt(255), ru::RandomInt(255));
-        //        g_engine.GetRenderer().DrawLine(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-
-        //    }
-        //}
         if (Engine::Get().GetInput().GetButtonPressed(Input::MouseButton::Right))
         {
             if (!points.empty()) { points.pop_back(); }
-
         }
 
+        // 2. ENGINE & GAME UPDATE
+        Engine::Get().Update();
+        float dt = Engine::Get().GetTime().GetDeltaTime();
+        game->Update(dt);
 
-        
-
-        //character
-        
-            
-
-        //for (int i = 0; i < 4; i++) {
-        //    renderer.SetColor(rand() % 256, rand() % 256, rand() % 256);
-        //    renderer.DrawFillRect(ru::RandomFloat(1920), ru::RandomFloat(1024), ru::RandomFloat(100), ru::RandomFloat(200));
-        //}
-        //for (int i = 0; i < 11; i++) {
-        //    renderer.SetColor(rand() % 256, rand() % 256, rand() % 256);
-        //    renderer.DrawLine(ru::RandomFloat(1920), ru::RandomFloat(1024), ru::RandomFloat(100), ru::RandomFloat(200));
-        //}
-
+        // 3. RENDER (Clear -> Draw -> Present)
         Engine::Get().GetRenderer().Clear();
-        Engine::Get().GetRenderer().DrawTexture(texture.get(), 0, 0);
+
+        // Draw Background
+        if (texture) {
+            Engine::Get().GetRenderer().DrawTexture(texture.get(), 0, 0);
+        }
+
+        // Draw Debug Points
+        for (size_t i = 0; i < points.size(); i++) {
+            Engine::Get().GetRenderer().SetColor(ru::RandomInt(255), ru::RandomInt(255), ru::RandomInt(255));
+            Engine::Get().GetRenderer().DrawPoint(points[i].x, points[i].y);
+        }
+
+        // Draw Particle System & Game Scene
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
-
-
-        Engine::Get().GetRenderer().SetColor(255, 255,0);
-     
-        //player.Draw(g_engine.GetRenderer());
-        //enemy.Draw(g_engine.GetRenderer());
-
-        scene.Draw(Engine::Get().GetRenderer());
-        sgame.Draw(Engine::Get().GetRenderer());
-
+        game->Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetRenderer().Present();
     }
-    //SHUTDOWN
+
+    // --- SHUTDOWN (SAFE ORDER) ---
+    // Destroy Game FIRST so its Actors/Scene release Engine memory
+    game.reset();
+
+    // THEN shut down Engine managers
     Engine::Get().ShutDown();
 
     return 0;

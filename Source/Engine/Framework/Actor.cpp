@@ -11,7 +11,6 @@
 #include "Serialization/Json.h"
 #include "Components/CircleColliderComponent.h"
 
-
 namespace nu
 {
     static RegisterActor<Actor> registerActor("Actor");
@@ -20,6 +19,7 @@ namespace nu
     {
         m_name = other.m_name;
         m_tag = other.m_tag;
+        m_layer = other.m_layer; // <-- Added m_layer copy
         m_transform = other.m_transform;
         m_velocity = other.m_velocity;
         m_damping = other.m_damping;
@@ -51,6 +51,7 @@ namespace nu
 
         m_name = other.m_name;
         m_tag = other.m_tag;
+        m_layer = other.m_layer; // <-- Added m_layer assignment
         m_transform = other.m_transform;
         m_velocity = other.m_velocity;
         m_damping = other.m_damping;
@@ -93,6 +94,7 @@ namespace nu
 
         json::Read(value, "name", m_name);
         json::Read(value, "tag", m_tag);
+        json::Read(value, "layer", m_layer); 
         json::Read(value, "lifespan", m_lifespan);
         json::Read(value, "velocity", m_velocity);
         json::Read(value, "damping", m_damping);
@@ -160,9 +162,9 @@ namespace nu
         m_transform.position += (m_velocity * dt);
         m_velocity *= (1.0f / (1.0f + m_damping * dt));
 
-        if (m_tag != "PlayerBullet" && m_tag != "Wall")
+        if (m_tag != "PlayerBullet" && m_tag != "Wall" && m_tag != "EnemyBullet" && m_tag != "Back")
         {
-            m_transform.position.x = nu::Wrap(0.0f, 1920.0f, m_transform.position.x);
+            m_transform.position.x = nu::Wrap(0.0f, 1200.0f, m_transform.position.x);
             m_transform.position.y = nu::Wrap(0.0f, 1024.0f, m_transform.position.y);
         }
     }

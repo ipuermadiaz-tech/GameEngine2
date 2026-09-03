@@ -10,10 +10,6 @@
 #include "Serialization/Json.h"
 #include "Components/Component.h"
 #include "Components/RenderComponent.h"
-//#include <iostream>
-//#include <memory>
-//#include <string>
-//#include <vector>
 
 namespace nu
 {
@@ -112,9 +108,11 @@ namespace nu
         float m_lifespan = 0.0f;
         std::string type;
 
-
-
+        //This is to render an actor below another,used notably in the sliding background
+        int GetLayer() const { return m_layer; }
+        void SetLayer(int layer) { m_layer = layer; }
     protected:
+        int m_layer{ 0 };
         std::string m_tag;
         Vector2 m_velocity{ 0, 0 };
         float m_damping{ 0.0f };

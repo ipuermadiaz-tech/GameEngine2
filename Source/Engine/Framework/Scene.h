@@ -30,6 +30,7 @@ namespace nu {
 
         template <typename T>
         T* GetActor();
+        void DrawLayerRange(const nu::Renderer& renderer, int minLayer, int maxLayer);
 
     private:
         Game* m_game = nullptr;

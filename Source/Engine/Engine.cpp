@@ -8,7 +8,7 @@ namespace nu
 
 	bool Engine::Initialize()
 	{
-		m_renderer.Initialize("Game Engine", 1920, 1024);
+		m_renderer.Initialize("Game Engine", 1200, 1024);
 	    m_input.Initialize();
 		m_audio.Initialize();
 		m_physics.Initialize();

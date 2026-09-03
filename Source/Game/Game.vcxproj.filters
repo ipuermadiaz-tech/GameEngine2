@@ -8,47 +8,45 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{ffc07665-e61a-4d0b-9995-113b62f12d0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceGame">
+      <UniqueIdentifier>{53111a7b-2bf3-48d0-af91-285c1b71e84d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SpriteGame\Assets.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="SpriteGame\Bullet.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="SpriteGame\Enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Assets.cpp">
+    <ClCompile Include="SpriteGame\Game.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceGame.cpp">
+    <ClCompile Include="SpriteGame\Player.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="SpriteGame\SpriteGame.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Player.h">
+    <ClCompile Include="SpriteGame\EnemyBullets.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceGame.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Source</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Build\Assets\data\scene.json">
       <Filter>Assets</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpriteGame\Assets.h" />
+    <ClInclude Include="SpriteGame\Bullet.h" />
+    <ClInclude Include="SpriteGame\Enemy.h" />
+    <ClInclude Include="SpriteGame\Player.h" />
+    <ClInclude Include="SpriteGame\SpriteGame.h" />
+    <ClInclude Include="SpriteGame\EnemyBullet.h" />
   </ItemGroup>
 </Project>

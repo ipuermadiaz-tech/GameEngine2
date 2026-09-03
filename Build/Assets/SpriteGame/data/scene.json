@@ -1,0 +1,290 @@
+{
+  "prototypes": [
+    {
+      "name": "MapPrototype",
+      "m_name": "MapPrototype",
+      "type": "Actor",
+      "tag": "Map",
+      "components": [
+        {
+          "type": "TilemapRendererComponent",
+          "tilemap_name": "Tilemaps/world.json"
+        }
+      ]
+    },
+    {
+      "name": "BulletPrototype",
+      "m_name": "BulletPrototype",
+      "type": "Bullet",
+      "tag": "PlayerBullet",
+      "lifespan": 5.0,
+        "layer": 100,
+      "m_speed": 800.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/bullet.png",
+          "texture": "Textures/bullet.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 16.0
+        }
+      ]
+    },
+    {
+      "name": "EnemyPrototype",
+      "m_name": "EnemyPrototype",
+      "type": "Enemy",
+      "tag": "Enemy",
+      "lifespan": 0.0,
+      "m_speed": 100.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/enemy.png",
+          "texture": "Textures/enemy.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 32.0
+        }
+      ]
+    },
+    {
+      "name": "BatPrototype",
+      "m_name": "BatPrototype",
+      "type": "Enemy",
+      "tag": "Bat",
+      "lifespan": 0.0,
+      "m_speed": 150.0,
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "textureName": "Textures/bat.png",
+          "fps": 10.0,
+          "columns": 4,
+          "rows": 1,
+          "count": 4
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24.0
+        }
+      ]
+    },
+    {
+  "name": "BossPrototype",
+  "m_name": "BossPrototype",
+  "type": "Enemy",
+  "tag": "Boss",
+  "lifespan": 0.0,
+  "m_speed": 40.0,
+  "m_health": 720,
+  "components": [
+    {
+      "type": "SpriteAnimationRendererComponent",
+      "textureName": "Textures/boss_animation.png",
+      "fps": 2.0,
+      "columns": 2,
+      "rows": 1,
+      "count": 2
+    },
+    {
+      "type": "RigidBodyComponent",
+      "velocity": [ 0.0, 0.0 ],
+      "damping": 0.0
+    },
+    {
+      "type": "CircleColliderComponent",
+      "radius": 150.0
+    }
+  ]
+},
+    {
+      "name": "WallPrototype",
+      "m_name": "WallPrototype",
+      "type": "Enemy",
+      "tag": "Wall",
+      "lifespan": 0.0,
+      "m_speed": 50.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/wall.png",
+          "texture": "Textures/wall.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 24.0
+        }
+      ]
+    },
+    {
+  "name": "LockerPrototype",
+  "m_name": "LockerPrototype",
+  "type": "Enemy",
+  "tag": "Wall",
+  "lifespan": 0.0,
+  "m_speed": 200.0,
+  "components": [
+    {
+      "type": "SpriteRendererComponent",
+      "textureName": "Textures/Locker.png",
+      "texture": "Textures/Locker.png"
+    },
+    {
+      "type": "RigidBodyComponent",
+      "velocity": [ 0.0, 0.0 ],
+      "damping": 0.0
+    },
+    {
+      "type": "CircleColliderComponent",
+      "radius": 80.0
+    }
+  ]
+},
+    {
+      "name": "PlayerPrototype",
+      "m_name": "PlayerPrototype",
+      "type": "Player",
+      "tag": "Player",
+      "lifespan": 0.0,
+      "m_speed": 700.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/player.png",
+          "texture": "Textures/player.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 2.3
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 25.0
+        }
+      ]
+    },
+    {
+      "name": "EnemyBulletPrototype",
+      "m_name": "EnemyBulletPrototype",
+      "type": "EnemyBullet",
+      "tag": "EnemyBullet",
+      "lifespan": 10.0,
+      "m_speed": 200.0,
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "textureName": "Textures/DangerBalls.png",
+          "texture": "Textures/DangerBalls.png"
+        },
+        {
+          "type": "RigidBodyComponent",
+          "velocity": [ 0.0, 0.0 ],
+          "damping": 0.0
+        },
+        {
+          "type": "CircleColliderComponent",
+          "radius": 8.0
+        }
+      ]
+    },
+    {
+  "name": "FairyBulletPrototype",
+  "m_name": "FairyBulletPrototype",
+  "type": "EnemyBullet",
+  "tag": "EnemyBullet",
+  "lifespan": 10.0,
+  "m_speed": 400.0,
+  "components": [
+    {
+      "type": "SpriteRendererComponent",
+      "textureName": "Textures/ChristBalls.png",
+      "texture": "Textures/ChristBalls.png"
+    },
+    {
+      "type": "RigidBodyComponent",
+      "velocity": [ 0.0, 0.0 ],
+      "damping": 0.0
+    },
+    {
+      "type": "CircleColliderComponent",
+      "radius": 8.0
+    }
+  ]
+},
+    {
+  "name": "AuraPrototype",
+  "m_name": "AuraPrototype",
+  "type": "Enemy",
+  "tag": "Back",
+  "layer": -100,
+  "lifespan": 15.0,
+  "m_speed": 300.0,
+  "components": [
+    {
+      "type": "SpriteRendererComponent",
+      "textureName": "Textures/background2.png",
+      "texture": "Textures/background2.png"
+    },
+    {
+      "type": "RigidBodyComponent",
+      "velocity": [ 0.0, 0.0 ],
+      "damping": 0.0
+    },
+    {
+      "type": "CircleColliderComponent",
+      "radius": 0.0
+    }
+  ]
+},
+{
+  "name": "FairyPrototype",
+  "m_name": "FairyPrototype",
+  "type": "Enemy",
+  "tag": "Fairy",
+  "lifespan": 0.0,
+  "m_speed": 120.0,
+  "m_health": 20,
+  "components": [
+    {
+      "type": "SpriteRendererComponent",
+      "textureName": "Textures/fairy.png",
+      "texture": "Textures/fairy.png"
+    },
+    {
+      "type": "RigidBodyComponent",
+      "velocity": [ 0.0, 0.0 ],
+      "damping": 0.0
+    },
+    {
+      "type": "CircleColliderComponent",
+      "radius": 80.0
+    }
+  ]
+}
+  ]
+}

@@ -171,12 +171,14 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SpaceGame.cpp" />
+    <ClCompile Include="SpriteGame\Assets.cpp" />
+    <ClCompile Include="SpriteGame\Bullet.cpp" />
+    <ClCompile Include="SpriteGame\Enemy.cpp" />
+    <ClCompile Include="SpriteGame\EnemyBullets.cpp" />
+    <ClCompile Include="SpriteGame\Game.cpp" />
+    <ClCompile Include="SpriteGame\Player.cpp" />
+    <ClCompile Include="SpriteGame\SpriteGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -184,14 +186,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SpaceGame.h" />
+    <None Include="..\..\Build\Assets\data\scene.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Build\Assets\data\scene.json" />
+    <ClInclude Include="SpriteGame\Assets.h" />
+    <ClInclude Include="SpriteGame\Bullet.h" />
+    <ClInclude Include="SpriteGame\Enemy.h" />
+    <ClInclude Include="SpriteGame\EnemyBullet.h" />
+    <ClInclude Include="SpriteGame\Player.h" />
+    <ClInclude Include="SpriteGame\SpriteGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

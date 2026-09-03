@@ -3,7 +3,6 @@
 #include "Actor.h"
 #include "Core/Factory.h"
 #include "Serialization/Json.h"
-//#include <iostream>
 
 namespace nu
 {
@@ -60,7 +59,7 @@ namespace nu
             actor->SetPosition(transform.position);
             actor->SetRotation(transform.rotation);
 
-            // Since transform.scale is a float, use it directly (fallback to 1.0f if 0.0f)
+            // Fallback to scale 1.0f if 0.0f is provided
             float scaleFactor = (transform.scale == 0.0f) ? 1.0f : transform.scale;
             actor->SetScale(scaleFactor);
 
@@ -70,6 +69,23 @@ namespace nu
         }
 
         return nullptr;
+    }
+    void Scene::DrawLayerRange(const nu::Renderer& renderer, int minLayer, int maxLayer)
+    {
+        // Ensure actors are sorted by layer
+        std::stable_sort(m_actors.begin(), m_actors.end(),
+            [](const std::unique_ptr<Actor>& a, const std::unique_ptr<Actor>& b) {
+                if (!a || !b) return a < b;
+                return a->GetLayer() < b->GetLayer();
+            });
+
+        for (const auto& actor : m_actors)
+        {
+            if (actor && actor->GetLayer() >= minLayer && actor->GetLayer() <= maxLayer)
+            {
+                actor->Draw(renderer);
+            }
+        }
     }
 
     void Scene::AddActor(std::unique_ptr<Actor> actor)
@@ -90,17 +106,7 @@ namespace nu
 
     void Scene::Update(float dt)
     {
-        // 1. Move any actors queued from previous frame/instantiations into active container
-        //if (!m_pendingActors.empty())
-        //{
-        //    for (auto& pending : m_pendingActors)
-        //    {
-        //        m_actors.push_back(std::move(pending));
-        //    }
-        //    m_pendingActors.clear();
-        //}
-
-        // 2. Update all active actors (index-based to be safe against size modifications)
+        // 1. Update all active actors (index-based to be safe against size modifications)
         size_t currentActorCount = m_actors.size();
         for (size_t i = 0; i < currentActorCount; ++i)
         {
@@ -110,7 +116,7 @@ namespace nu
             }
         }
 
-        // 3. Collision logic
+        // 2. Collision logic
         for (size_t i = 0; i < m_actors.size(); i++)
         {
             for (size_t j = i + 1; j < m_actors.size(); j++)
@@ -129,7 +135,7 @@ namespace nu
             }
         }
 
-        // 4. Cleanup destroyed actors
+        // 3. Cleanup destroyed actors
         auto it = m_actors.begin();
         while (it != m_actors.end())
         {
@@ -143,7 +149,7 @@ namespace nu
             }
         }
 
-        // 5. Append new actors instantiated during this frame's Update/Collision step
+        // 4. Append new actors instantiated during this frame's Update/Collision step
         if (!m_pendingActors.empty())
         {
             for (auto& pending : m_pendingActors)
@@ -155,8 +161,15 @@ namespace nu
         }
     }
 
-    void Scene::Draw(const Renderer& renderer)
+    void Scene::Draw(const nu::Renderer& renderer)
     {
+        // Sort actors from lowest layer to highest layer before rendering
+        std::stable_sort(m_actors.begin(), m_actors.end(),
+            [](const std::unique_ptr<Actor>& a, const std::unique_ptr<Actor>& b) {
+                if (!a || !b) return a < b;
+                return a->GetLayer() < b->GetLayer();
+            });
+
         for (const auto& actor : m_actors)
         {
             if (actor)
