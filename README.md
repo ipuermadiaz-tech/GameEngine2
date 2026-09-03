@@ -25,6 +25,13 @@ that is slightly different.Its purpose its to go towards the current position of
 bullets.
 -The objective of the game is reaching 8000 points,at which point you have a fight and if you win you won the game.
 
+---
+Screenshots
+
+<img width="618" height="526" alt="Sc1" src="https://github.com/user-attachments/assets/cacc85dc-1e9e-4388-9fb4-721cd511415f" />
+<img width="665" height="562" alt="FB" src="https://github.com/user-attachments/assets/b4e8c898-d6b1-475c-b60b-aef812282ad3" />
+
+
 
 ---
 The project uses C++17 or higher
